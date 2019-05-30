@@ -11,11 +11,24 @@ import warriors.contracts.WarriorsAPI;
 
 public class Warriors implements GameState, WarriorsAPI, Hero, Map {
 
-    private ArrayList list = new ArrayList<Object>();
+    private ArrayList heroes = new ArrayList<Object>();
+    private ArrayList maps = new ArrayList<Object>();
     private String playerName;
-    private String image;
-    private String hero;
     private String gameId;
+    private GameStatus gameStatus;
+    private Hero hero;
+    private Map map;
+    private String lastLog;
+    private int currentCase;
+    //private List<Hero> heroes;
+    //private List<Map> maps;
+    private int numberOfCase;
+    private String name;
+    private String image;
+    private int life;
+    private int attackLevel;
+
+    
     
     public Warriors() {
         this("Conan", "conan.png", "Guerrier", 0, 0);
@@ -33,6 +46,10 @@ public class Warriors implements GameState, WarriorsAPI, Hero, Map {
         this.setForce(r.nextInt(max - min + 1) + min) ;
     }
 
+    /**
+	 * Méthodes bind from the GameState interface.
+	 */
+    
     @Override
     public String getPlayerName() {
         return playerName;
@@ -44,7 +61,7 @@ public class Warriors implements GameState, WarriorsAPI, Hero, Map {
 
     @Override
     public String getGameId() {
-        return null;
+        return gameId;
     }
 
     public void setGameId(String gameId) {
@@ -53,7 +70,11 @@ public class Warriors implements GameState, WarriorsAPI, Hero, Map {
 
     @Override
     public GameStatus getGameStatus() {
-        return null;
+        return gameStatus;
+    }
+
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus ;
     }
 
     @Override
@@ -61,54 +82,99 @@ public class Warriors implements GameState, WarriorsAPI, Hero, Map {
         return hero;
     }
 
+    public void setHero(Hero hero) {
+        this.hero = hero ;
+    }
+
     @Override
     public Map getMap() {
-        return null;
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map ;
     }
 
     @Override
     public String getLastLog() {
-        return null;
+        return lastLog;
+    }
+
+    public void setLastLog(String lastLog) {
+        this.lastLog = lastLog ;
     }
 
     @Override
     public int getCurrentCase() {
-        return 0;
+        return currentCase;
     }
 
+    public void setCurrentCase(int currentCase) {
+        this.currentCase = currentCase ;
+    }
+
+    /**
+	 * Méthodes bind from the WarriorsAPI interface.
+	 */
+    
     @Override
     public List<Hero> getHeroes() {
-        return null;
+        return heroes;
+    }
+
+    public void setHeroes(List<Hero> heroes) {
+        this.heroes = heroes ;
     }
 
     @Override
     public List<Map> getMaps() {
-        return null;
+        return maps;
+    }
+
+    public void setMaps(List<Map> maps) {
+        this.maps = maps ;
     }
 
     @Override
     public GameState createGame(String playerName, Hero hero, Map map) {
-        return null;
+        return createGame;
     }
 
     @Override
     public GameState nextTurn(String gameID) {
-        return null;
+        return nextTurn;
     }
 
+    /**
+	 * Méthodes bind from the Map interface.
+	 */
+    
     @Override
     public int getNumberOfCase() {
-        return 0;
+        return numberOfCase;
     }
 
+    public void setNumberOfCase(int numberOfCase) {
+        this.numberOfCase = numberOfCase ;
+    }
+
+    /**
+	 * Méthodes bind from the Hero interface.
+     * and Map interface for "getName()".
+	 */
+    
     @Override
     public String getName() {
-        return null;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name ;
     }
 
     @Override
     public String getImage() {
-        return null;
+        return image;
     }
 
     public void setImage(String image) {
@@ -117,12 +183,20 @@ public class Warriors implements GameState, WarriorsAPI, Hero, Map {
 
     @Override
     public int getLife() {
-        return 0;
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life ;
     }
 
     @Override
     public int getAttackLevel() {
-        return 0;
+        return attackLevel;
+    }
+
+    public void setAttackLevel(int attackLevel) {
+        this.attackLevel = attackLevel ;
     }
     
 }

@@ -13,24 +13,24 @@ public class Heros implements Hero {
     private String image;
     private int life;
     private int attackLevel;
-    private String warrior = ("Guerrier");
-    private String magician = ("Magicien");
+    private String warrior = ("Conan");
+    private String magician = ("Gandalf");
     
     
     /**
-	 * Constructeurs.
+	 * Constructeur par defaut.
 	 */
     
     public Heros() {
         this("Conan", "conan.png");
-
-        //this("Conan", "conan.png", "Guerrier", 0, 0);
     }
+
+    /**
+	 * Constructeurs avec paramètres.
+	 */
 
     public Heros(String name, String image) {
         this(name, image, 0, 0);
-
-        //this("Conan", "conan.png", "Guerrier", 0, 0);
     }
 
     public Heros(String name, String image, int life, int attackLevel) {

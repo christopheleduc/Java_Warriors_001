@@ -1,5 +1,7 @@
 package warriors.engine;
 
+import java.sql.Timestamp;
+//import java.time.Instant;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -12,45 +14,50 @@ public class Game implements GameState {
 	 */
     
     private String playerName;
-    private String gameId;
-    private GameStatus gameStatus;
     private Hero hero;
     private Map map;
+    private String gameId;
+    private GameStatus gameStatus;
     private String lastLog;
     private int currentCase;
-    private GameStatus defaut = GameStatus.FINISHED;
+    //String timestamp;
     
     /**
-	 * Constructeurs.
+	 * Constructeur par defaut.
 	 */
 
-    public Game() {
-        //this.heroes.add(new Heros("Conan", "conan.png"));
-        this("Player_1");
-    }
+    // public Game() {
+    //     //this.heroes.add(new Heros("Conan", "conan.png"));
+    //     this("Player_1", "Conan", "Mordor");
+    // }
 
-    public Game(String playerName) {
-        this(playerName, "1", defaut, "Warrior", 1);
+    /**
+	 * Constructeurs avec paramètres.
+	 */
 
-        //this("Conan", "conan.png", "Guerrier", 0, 0);
-    }
-
-    public Game(String playerName, String gameId, GameStatus gameStatus, Hero hero, Map map, String lastLog, int currentCase) {
+    public Game(String playerName, Hero hero, Map map) {
         this.setPlayerName(playerName) ;
-        this.setGameId(gameId) ;
-        this.setGameStatus(gameStatus) ;
         this.setHero(hero) ;
         this.setMap(map) ;
-        this.setLastLog(lastLog) ;
-        this.setCurrentCase(currentCase) ;
-
-        //this("Conan", "conan.png", "Guerrier", 0, 0);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis()) ;
+        //Instant instant = timestamp.toInstant() ; // Convert timestamp to instant
+        gameId = timestamp.toString() ;
+        this.setGameId(gameId) ;
     }
-    
-    
+
+    // public Game(String playerName, Hero hero, Map map, String gameId, GameStatus gameStatus, String lastLog, int currentCase) {
+    //     this.setPlayerName(playerName) ;
+    //     this.setHero(hero) ;
+    //     this.setMap(map) ;
+    //     this.setGameId(gameId) ;
+    //     this.setGameStatus(gameStatus) ;
+    //     this.setLastLog(lastLog) ;
+    //     this.setCurrentCase(currentCase) ;
+    // }
+
     /**
-	 * Méthodes bind from the GameState interface.
-	 */
+     * Méthodes bind from the GameState interface.
+     */
     
     @Override
     public String getPlayerName() {

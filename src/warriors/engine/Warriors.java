@@ -2,12 +2,14 @@ package warriors.engine;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
 import warriors.contracts.Map;
 import warriors.contracts.WarriorsAPI;
+import warriors.engine.Game ;
 
 public class Warriors implements WarriorsAPI {
 
@@ -15,26 +17,41 @@ public class Warriors implements WarriorsAPI {
 	 * Attributs.
 	 */
     
-    private ArrayList heroes = new ArrayList<Hero>();
-    private ArrayList maps = new ArrayList<Map>();
+    private ArrayList<Hero> heroes = new ArrayList<Hero>();
+    private ArrayList<Map> maps = new ArrayList<Map>();
+    //private ArrayList<GameState> gameStatList = new ArrayList<GameState>();
+    private HashMap<String, GameState> gameStatList = new HashMap<String, GameState>();
+    //private gameStatList = new gameStatList();
 
     
     /**
-	 * Constructeurs.
+	 * Constructeur par defaut.
 	 */
     
     public Warriors() {
+        // Création d'une liste de heros
         this.heroes.add(new Heros("Conan", "conan.png"));
-        //this("Conan", "conan.png", "Guerrier", 0, 0);
+        this.heroes.add(new Heros("Gandalf", "gandalf.png"));
+        // Création d'une liste de map
+        this.maps.add(new Maps("Mordor", 64));
+        this.maps.add(new Maps("Terre du milieu", 64));
+        this.maps.add(new Maps("NeverLand", 64));
     }
+
+    /**
+	 * Constructeurs avec paramètres.
+	 */
 
     public Warriors(String name) {
         this.heroes.add(new Heros(name, "conan.png"));
-        //this(playerName, hero, 0, 0);
+        this.maps.add(new Maps("Mordor", 64));
+        this.maps.add(new Maps("Terre du milieu", 64));
+        this.maps.add(new Maps("NeverLand", 64));
     }
 
-    public Warriors(String name, String image, int life, int AttackLevel) {
+    public Warriors(String name, String image, int life, int AttackLevel, String nameMap, int numberOfCase) {
         this.heroes.add(new Heros(name, image, life, AttackLevel));
+        this.maps.add(new Maps(nameMap, numberOfCase));
         //heroes.add(warrior) ;
         //heroes.add(magician) ;
         // this.setPlayerName(playerName) ;
@@ -53,10 +70,10 @@ public class Warriors implements WarriorsAPI {
         return heroes ;
     }
 
-    public void setHeroes(List<Hero> heroes) {
-        //this.heroes = heroes.add(heroes) ;
-        //this.heroes = heroes ;
-    }
+    // public void setHeroes(List<Hero> heroes) {
+    //     this.heroes = heroes new Heros()) ;
+    //     //this.heroes = heroes ;
+    // }
 
     @Override
     public List<Map> getMaps() {
@@ -69,15 +86,30 @@ public class Warriors implements WarriorsAPI {
 
     @Override
     public GameState createGame(String playerName, Hero hero, Map map) {
-        this.playerName = playerName ;
-        this.hero = GameState.add(hero) ;
-        this.map = GameState.add(map) ;
-        return GameState;
+        GameState tour = new Game(playerName, hero, map);
+        // Création du GameState
+        gameStatList.add(tour); 
+
+        GameState tour2 = new Game(playerName, hero, map);
+        gameStatList.add(tour); 
+
+
+        gameStatList.get(1).getLastLog();
+
+            //tour.getPlayerName(), tour.getGameId(), tour.getGameStatus(), tour.getHero(), tour.getMap(), tour.getLastLog(), tour.getCurrentCase()) ;
+        //this.gameStat.add(new Game(playerName, hero, map));
+        return tour;
     }
 
     @Override
     public GameState nextTurn(String gameID) {
-        return nextTurn;
+        // lancer les dés
+        // recup state par rapport au gameID
+        next = this.Game.getGameId();
+        //this.gameID tour.getGameId(gameID);
+        // Renvoyer l'etat de la partie
+        gameStatList.get(1).getLastLog();
+        return next;
     }
     
 }

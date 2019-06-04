@@ -10,17 +10,28 @@ public class Maps implements Map {
 	 */
 
     private String name;
-    private int numberOfCase = 64;
+    private int numberOfCase;
 
+    /**
+	 * Constructeur par defaut.
+	 */
+    
+    public Maps() {
+        this("Mordor", 64);
+    }
+
+    /**
+	 * Constructeur avec paramètres.
+	 */
+
+    public Maps(String name, int numberOfCase) {
+        this.setName(name) ;
+        this.setNumberOfCase(numberOfCase);
+    }
 
     /**
 	 * Méthodes bind from the Map interface.
 	 */
-
-    // @Override
-    // public Object map(Object original) {
-    //     return null;
-    // }
     
     @Override
     public String getName() {

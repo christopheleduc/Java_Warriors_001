@@ -86,30 +86,34 @@ public class Warriors implements WarriorsAPI {
 
     @Override
     public GameState createGame(String playerName, Hero hero, Map map) {
+
+        // Instanciation de la partie
         GameState tour = new Game(playerName, hero, map);
+
         // Création du GameState
-        gameStatList.add(tour); 
+        //gameStatList.add(tour); // Ajout de l'intance de Game (interface GameState) dans la ArayList
+        gameStatList.put(tour.getGameId(), tour); // Ajout de l'intance de Game (interface GameState) dans la HasMap
+        System.out.println(gameStatList); // DEBUG
 
-        GameState tour2 = new Game(playerName, hero, map);
-        gameStatList.add(tour); 
-
-
-        gameStatList.get(1).getLastLog();
-
-            //tour.getPlayerName(), tour.getGameId(), tour.getGameStatus(), tour.getHero(), tour.getMap(), tour.getLastLog(), tour.getCurrentCase()) ;
+        // GameState tour2 = new Game(playerName, hero, map);
+        // gameStatList.add(tour); 
+        //gameStatList.get(1).getLastLog();
+        //tour.getPlayerName(), tour.getGameId(), tour.getGameStatus(), tour.getHero(), tour.getMap(), tour.getLastLog(), tour.getCurrentCase()) ;
         //this.gameStat.add(new Game(playerName, hero, map));
-        return tour;
+        return tour; // Retourne l'instance de la partie
     }
 
     @Override
     public GameState nextTurn(String gameID) {
         // lancer les dés
         // recup state par rapport au gameID
-        next = this.Game.getGameId();
+        //next = this.Game.getGameId();
         //this.gameID tour.getGameId(gameID);
         // Renvoyer l'etat de la partie
-        gameStatList.get(1).getLastLog();
-        return next;
+        // gameStatList.get(1).getLastLog();
+        System.out.println(gameStatList.get(gameID)); // DEBUG
+
+        return gameStatList.get(gameID);
     }
     
 }

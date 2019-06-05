@@ -1,7 +1,7 @@
 package warriors.engine;
 
 import java.sql.Timestamp;
-//import java.time.Instant;
+import java.time.Instant;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -36,13 +36,28 @@ public class Game implements GameState {
 	 */
 
     public Game(String playerName, Hero hero, Map map) {
+
+        // Initialisation des paramètres.
         this.setPlayerName(playerName) ;
         this.setHero(hero) ;
         this.setMap(map) ;
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis()) ;
-        //Instant instant = timestamp.toInstant() ; // Convert timestamp to instant
-        gameId = timestamp.toString() ;
-        this.setGameId(gameId) ;
+
+        // Création du gameId initial.
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis()) ; // Création du time stamp initial.
+        Instant instant = timestamp.toInstant() ; // Convert timestamp to instant.
+        //gameId = timestamp.toString() ;
+        //gameId = instant.toString() ; // Convert to String.
+        this.setGameId(instant.toString()) ; // set le gameId
+
+        // Création de gameStatus.
+        this.setGameStatus(GameStatus.IN_PROGRESS) ;
+
+        // Création de lastLog.
+        this.setLastLog("La partie commence. A vous de jouer!!!");
+
+        // Création de la position initial du joueur (currentCase).
+        this.setCurrentCase(0) ; // La partie commence à la position 0.
+
     }
 
     // public Game(String playerName, Hero hero, Map map, String gameId, GameStatus gameStatus, String lastLog, int currentCase) {
@@ -121,5 +136,10 @@ public class Game implements GameState {
     public void setCurrentCase(int currentCase) {
         this.currentCase = currentCase ;
     }
+
+    // @Override
+    // public String toString() {
+    //     return this.getPlayerName();
+    // }
     
 }

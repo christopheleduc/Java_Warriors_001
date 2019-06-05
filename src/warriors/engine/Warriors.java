@@ -3,7 +3,12 @@ package warriors.engine;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
+import java.util.Map.Entry;
+
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -20,8 +25,9 @@ public class Warriors implements WarriorsAPI {
     private ArrayList<Hero> heroes = new ArrayList<Hero>();
     private ArrayList<Map> maps = new ArrayList<Map>();
     //private ArrayList<GameState> gameStatList = new ArrayList<GameState>();
-    private HashMap<String, GameState> gameStatList = new HashMap<String, GameState>();
+    private HashMap<String, GameState> gameStatList = new HashMap<>();
     //private gameStatList = new gameStatList();
+    private Random r = new Random();
 
     
     /**
@@ -93,27 +99,85 @@ public class Warriors implements WarriorsAPI {
         // Création du GameState
         //gameStatList.add(tour); // Ajout de l'intance de Game (interface GameState) dans la ArayList
         gameStatList.put(tour.getGameId(), tour); // Ajout de l'intance de Game (interface GameState) dans la HasMap
-        System.out.println(gameStatList); // DEBUG
+        System.out.println("****************************************");
+        // System.out.println("gameId -> " + tour.getGameId());
+        // System.out.println("DEBUG01: " + gameStatList.values()); // DEBUG
+
+        // DEBUG
+        // System.out.println("DEBUG01: "); // DEBUG
+        // System.out.println("DEBUG01A: " + tour.getPlayerName()); // DEBUG
+        // System.out.println("DEBUG01 GameId: " + gameStatList.get(tour.getGameId()).getGameId()); // DEBUG
+        // System.out.println("DEBUG01 player name: " + gameStatList.get(tour.getGameId()).getPlayerName()); // DEBUG
+        // System.out.println("DEBUG01 case: " + gameStatList.get(tour.getGameId()).getCurrentCase()); // DEBUG
+        // System.out.println("DEBUG01 Hero: " + gameStatList.get(tour.getGameId()).getHero()); // DEBUG
+        // System.out.println("DEBUG01 Map: " + gameStatList.get(tour.getGameId()).getMap()); // DEBUG
+        // System.out.println("DEBUG01 GameStaut: " + gameStatList.get(tour.getGameId()).getGameStatus()); // DEBUG
+        // System.out.println("DEBUG01 LastLog: " + gameStatList.get(tour.getGameId()).getLastLog()); // DEBUG
+
+        // DEBUG
+        // Set<Entry<String, GameState>> setGameStatList = gameStatList.entrySet();
+        // Iterator<Entry<String, GameState>> it = setGameStatList.iterator();
+        // while(it.hasNext()){
+        //     Entry<String, GameState> e = it.next();
+        //     System.out.println(e.getKey() + " : " + e.getValue());
+        // }
+
+        // for (HashMap.Entry<String, GameState> entry : gameStatList.entrySet()) {
+        //     String key = entry.getKey();
+        //     GameState value = entry.getValue();
+        //     System.out.println(key + " -- " + value.toString());
+        // }
+        //System.out.println("coucou");
 
         // GameState tour2 = new Game(playerName, hero, map);
         // gameStatList.add(tour); 
         //gameStatList.get(1).getLastLog();
         //tour.getPlayerName(), tour.getGameId(), tour.getGameStatus(), tour.getHero(), tour.getMap(), tour.getLastLog(), tour.getCurrentCase()) ;
         //this.gameStat.add(new Game(playerName, hero, map));
-        return tour; // Retourne l'instance de la partie
+        return tour; // Retourne l'instance de la partie.
     }
 
     @Override
     public GameState nextTurn(String gameID) {
-        // lancer les dés
+        // lancer les dés.
+        int de = r.nextInt(6 - 1 + 1) + 1 ; // random de 1 à 6.
+        int des = de + gameStatList.get(gameID).getCurrentCase() ; // calcul la nouvelle position.
+
+        // + de 64 cases = Fin de partie.
+        if(des >= 64){
+            System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
+            ((Game)(gameStatList.get(gameID))).setCurrentCase(64) ; // Set current case FINAL.
+            System.out.println("Vous etes maintenant sur la case: [ 64 ]") ; // Affiche la dernière case.
+            System.out.println("-------------------------------------------") ; // Affiche la dernière case.
+            ((Game)(gameStatList.get(gameID))).setLastLog("Bravo! Vous avez gagné!") ; // Affiche la dernière case.
+            ((Game)(gameStatList.get(gameID))).setGameStatus(GameStatus.FINISHED) ; // Renvoi FIN.
+        } else {
+            System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
+            ((Game)(gameStatList.get(gameID))).setCurrentCase(des) ; // Set current case.
+            ((Game)(gameStatList.get(gameID))).setLastLog("Vous etes maintenant sur la case: [ " + des + " ]") ; // Affiche la nouvelle case.
+        }
+
+        System.out.println("****************************************"); // Separation.
+
         // recup state par rapport au gameID
         //next = this.Game.getGameId();
         //this.gameID tour.getGameId(gameID);
         // Renvoyer l'etat de la partie
         // gameStatList.get(1).getLastLog();
-        System.out.println(gameStatList.get(gameID)); // DEBUG
+        // System.out.println("DEBUG02: " + gameStatList.get(gameID)); // DEBUG
+        //System.out.println("DEBUG02 GameId: " + gameStatList.get(gameID.equals(gameID))); // DEBUG
+        // Set<Entry<String, GameState>> setGameStatList = gameStatList.entrySet();
+        // Iterator<Entry<String, GameState>> it = setGameStatList.iterator();
+        // //Entry<String, GameState> e = it.next();
+        // Entry<String, GameState> e = it.next();
+        // System.out.println(e.getKey() + " : " + e.getValue());
+        // return e.getValue() ;
+
+        //gameStatList.get(gameID);
+        
 
         return gameStatList.get(gameID);
+        
     }
     
 }

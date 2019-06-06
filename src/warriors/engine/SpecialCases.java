@@ -98,7 +98,7 @@ public class SpecialCases {
         }
     }
 
-    public int IsArcCase (int des) {
+    public int IsArcCase (int des, int power) {
         GameItem parameters = GameItem.ARCS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesArc()){
@@ -106,7 +106,7 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return parameters.getAttack() ; // Renvoi les points d'attaque'.
+                return (parameters.getAttack() + power) ; // Renvoi le total des points d'attaque'.
             }
         }
         return 0 ; // renvoi 0 !!!

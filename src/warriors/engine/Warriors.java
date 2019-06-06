@@ -143,28 +143,8 @@ public class Warriors implements WarriorsAPI {
         // lancer les dés.
         int de = r.nextInt(6 - 1 + 1) + 1 ; // random de 1 à 6.
         int des = de + gameStatList.get(gameID).getCurrentCase() ; // calcul la nouvelle position.
-
-        // Dragons
-
-        // Sorciers
-
-        // Gobelins
-
-        // Arcs
-
-        // Massues
-
-        // Epées
-
-        // Sorts Eclair
-
-        // Sorts Fire
-
-        // Potion Min
-
-        // Potion Norm
-
-        // Potion High
+        int energy = ((Game)(gameStatList.get(gameID))).getHero().getLife() ; // On recupere la vie du joueur.
+        int power = ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel() ; // On recupere l'attaque du joueur.
 
         // + de 64 cases = Fin de partie.
         if(des >= 64){
@@ -179,25 +159,44 @@ public class Warriors implements WarriorsAPI {
             ((Game)(gameStatList.get(gameID))).setCurrentCase(des) ; // Set current case.
             ((Game)(gameStatList.get(gameID))).setLastLog("Vous etes maintenant sur la case: [ " + des + " ]") ; // Affiche la nouvelle case.
 
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"); // Affiche une barre.
             System.out.println("_________________________________________________________________________________"); // Affiche une barre.
             System.out.println("Votre vie: [ " + ((Game)(gameStatList.get(gameID))).getHero().getLife() + " ]"); // Affiche la vie du joueur.
-            System.out.println("Votre vie: [ " + ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel() + " ]"); // Affiche les points d'attack du joueur.
+            System.out.println("Votre force de frappe: [ " + ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel() + " ]"); // Affiche les points d'attack du joueur.
             System.out.println("_________________________________________________________________________________"); // Affiche une barre.
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"); // Affiche une barre.
 
             SpecialCases isSpecCase = new SpecialCases(des) ;
-            // Les adversaires.
-            isSpecCase.IsDragonCase(des);
-            isSpecCase.IsSorcierCase(des);
-            isSpecCase.IsGobelinCase(des);
-            // Les bonus.
-            isSpecCase.IsArcCase(des);
-            isSpecCase.IsMassueCase(des);
-            isSpecCase.IsEpeeCase(des);
-            isSpecCase.IsSortECase(des);
-            isSpecCase.IsSortFCase(des);
-            isSpecCase.IsPostionLCase(des);
-            isSpecCase.IsPostionNCase(des);
-            isSpecCase.IsPostionHCase(des);
+            //******************//
+            // Les adversaires. //
+            //******************//
+            // Dragons          //
+            isSpecCase.IsDragonCase(des) ;
+            // Sorciers         //
+            isSpecCase.IsSorcierCase(des) ;
+            // Gobelins         //
+            isSpecCase.IsGobelinCase(des) ;
+            //******************//
+            // Les bonus.       //
+            //******************//
+            // Arcs             //
+            // isSpecCase.IsArcCase(des, power) ;
+            ((Heros) ((Game)(gameStatList.get(gameID))).getHero()).setAttackLevel(isSpecCase.IsArcCase(des, power)) ; // On recupere l'attaque du joueur.
+            System.out.println("DEBUG: " + ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel()) ; // DeBUG !!!
+            // Massues          //
+            isSpecCase.IsMassueCase(des) ;
+            // Epées            //
+            isSpecCase.IsEpeeCase(des) ;
+            // Sorts Eclair     //
+            isSpecCase.IsSortECase(des) ;
+            // Sorts Fire       //
+            isSpecCase.IsSortFCase(des) ;
+            // Potion Min       //
+            isSpecCase.IsPostionLCase(des) ;
+            // Potion Norm      //
+            isSpecCase.IsPostionNCase(des) ;
+            // Potion High      //
+            isSpecCase.IsPostionHCase(des) ;
 
             // a mettre en parametres.
             //((Game)(gameStatList.get(gameID))).getHero().getLife() ;
@@ -234,7 +233,7 @@ public class Warriors implements WarriorsAPI {
         //gameStatList.get(gameID);
         
 
-        return gameStatList.get(gameID);
+        return gameStatList.get(gameID) ;
         
     }
     

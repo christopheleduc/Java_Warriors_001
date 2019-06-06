@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import warriors.contracts.GameItem;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -143,6 +144,28 @@ public class Warriors implements WarriorsAPI {
         int de = r.nextInt(6 - 1 + 1) + 1 ; // random de 1 à 6.
         int des = de + gameStatList.get(gameID).getCurrentCase() ; // calcul la nouvelle position.
 
+        // Dragons
+
+        // Sorciers
+
+        // Gobelins
+
+        // Arcs
+
+        // Massues
+
+        // Epées
+
+        // Sorts Eclair
+
+        // Sorts Fire
+
+        // Potion Min
+
+        // Potion Norm
+
+        // Potion High
+
         // + de 64 cases = Fin de partie.
         if(des >= 64){
             System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
@@ -155,6 +178,30 @@ public class Warriors implements WarriorsAPI {
             System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
             ((Game)(gameStatList.get(gameID))).setCurrentCase(des) ; // Set current case.
             ((Game)(gameStatList.get(gameID))).setLastLog("Vous etes maintenant sur la case: [ " + des + " ]") ; // Affiche la nouvelle case.
+
+            SpecialCases isSpecCase = new SpecialCases(des) ;
+            isSpecCase.IsDragonCase(des);
+            isSpecCase.IsSorcierCase(des);
+            isSpecCase.IsGobelinCase(des);
+            isSpecCase.IsArcCase(des);
+            isSpecCase.IsMassueCase(des);
+            isSpecCase.IsEpeeCase(des);
+            isSpecCase.IsSortECase(des);
+            isSpecCase.IsSortFCase(des);
+            isSpecCase.IsPostionLCase(des);
+            isSpecCase.IsPostionNCase(des);
+            isSpecCase.IsPostionHCase(des);
+
+
+            // GameItem parameters = GameItem.DRAGONS; // Utilise ENUM.
+            // // Teste si sur une case spécial.
+            // for (int position : parameters.getCasesDrag()){
+            //     if(position == des) {
+            //         System.out.println("!!! ATTENTION !!!"); // Avertissement.
+            //         System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+            //     }
+            // }
+
         }
 
         System.out.println("****************************************"); // Separation.

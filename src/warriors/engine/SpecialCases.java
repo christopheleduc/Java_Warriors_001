@@ -69,6 +69,7 @@ public class SpecialCases {
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
             }
         }
     }
@@ -80,6 +81,7 @@ public class SpecialCases {
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
             }
         }
     }
@@ -91,96 +93,121 @@ public class SpecialCases {
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
             }
         }
     }
 
-    public void IsArcCase (int des) {
+    public int IsArcCase (int des) {
         GameItem parameters = GameItem.ARCS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesArc()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsMassueCase (int des) {
+    public int IsMassueCase (int des) {
         GameItem parameters = GameItem.MASSUES; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesMass()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsEpeeCase (int des) {
+    public int IsEpeeCase (int des) {
         GameItem parameters = GameItem.EPEES; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesEpee()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsSortECase (int des) {
+    public int IsSortECase (int des) {
         GameItem parameters = GameItem.SORTS_ECLAIR; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesSortE()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsSortFCase (int des) {
+    public int IsSortFCase (int des) {
         GameItem parameters = GameItem.SORTS_FIRE; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesSortF()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsPostionLCase (int des) {
+    public int IsPostionLCase (int des) {
         GameItem parameters = GameItem.POTION_LOW; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionMin()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
+                return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsPostionNCase (int des) {
+    public int IsPostionNCase (int des) {
         GameItem parameters = GameItem.POTION_NORM; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionNorm()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
+                return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
 
-    public void IsPostionHCase (int des) {
+    public int IsPostionHCase (int des) {
         GameItem parameters = GameItem.POTION_HIGH; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionHigh()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
+                System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
+                return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
+        return 0 ; // renvoi 0 !!!
     }
     
 

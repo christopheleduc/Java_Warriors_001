@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Random;
-import java.util.Set;
-import java.util.Map.Entry;
+//import java.util.Set;
+//import java.util.Map.Entry;
 
-import warriors.contracts.GameItem;
+//import warriors.contracts.GameItem;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -179,10 +179,17 @@ public class Warriors implements WarriorsAPI {
             ((Game)(gameStatList.get(gameID))).setCurrentCase(des) ; // Set current case.
             ((Game)(gameStatList.get(gameID))).setLastLog("Vous etes maintenant sur la case: [ " + des + " ]") ; // Affiche la nouvelle case.
 
+            System.out.println("_________________________________________________________________________________"); // Affiche une barre.
+            System.out.println("Votre vie: [ " + ((Game)(gameStatList.get(gameID))).getHero().getLife() + " ]"); // Affiche la vie du joueur.
+            System.out.println("Votre vie: [ " + ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel() + " ]"); // Affiche les points d'attack du joueur.
+            System.out.println("_________________________________________________________________________________"); // Affiche une barre.
+
             SpecialCases isSpecCase = new SpecialCases(des) ;
+            // Les adversaires.
             isSpecCase.IsDragonCase(des);
             isSpecCase.IsSorcierCase(des);
             isSpecCase.IsGobelinCase(des);
+            // Les bonus.
             isSpecCase.IsArcCase(des);
             isSpecCase.IsMassueCase(des);
             isSpecCase.IsEpeeCase(des);
@@ -191,6 +198,10 @@ public class Warriors implements WarriorsAPI {
             isSpecCase.IsPostionLCase(des);
             isSpecCase.IsPostionNCase(des);
             isSpecCase.IsPostionHCase(des);
+
+            // a mettre en parametres.
+            //((Game)(gameStatList.get(gameID))).getHero().getLife() ;
+            //((Game)(gameStatList.get(gameID))).getHero().getLife() ;
 
 
             // GameItem parameters = GameItem.DRAGONS; // Utilise ENUM.

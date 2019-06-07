@@ -1,8 +1,11 @@
 package warriors.engine;
 
-import warriors.contracts.GameItem;
+import java.util.HashMap;
 
-public class SpecialCases {
+import warriors.contracts.GameItem;
+import warriors.contracts.GameState;
+
+public class SpecialCases extends Warriors{
 
     /**
 	 * Attributs.
@@ -98,21 +101,28 @@ public class SpecialCases {
         }
     }
 
-    public int IsArcCase (int des, int power) {
+    //public HashMap<String, GameState> IsArcCase (int des, HashMap<String, GameState> listGamer, String idGame) {
+    public void IsArcCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.ARCS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesArc()){
             if(position == des) {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
-                System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
-                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return (parameters.getAttack() + power) ; // Renvoi le total des points d'attaque'.
+                System.out.println("Vous etes en présence d'" + parameters.getNom() + " !") ; // Description.
+                System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !") ; // Détails.
+                //listGamer.get(idGame).getHero().getAttackLevel() ; // TEST
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                pow = pow + parameters.getAttack() ; // On ajoute les points d'attack obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(pow) ; // On modifie (set) l'attaque du joueur.
+                System.out.println("Ce qui porte votre force d'attack à: [ " + ((Game)(listGamer.get(idGame))).getHero().getAttackLevel() + " ]"); // on affiche la nouvelle force d'attak du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return (parameters.getAttack() + power) ; // Renvoi le total des points d'attaque'.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsMassueCase (int des) {
+    public void IsMassueCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.MASSUES; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesMass()){
@@ -120,13 +130,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return parameters.getAttack() ; // Renvoi les points d'attaque'.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                pow = pow + parameters.getAttack() ; // On ajoute les points d'attack obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(pow) ; // On modifie (set) l'attaque du joueur.
+                System.out.println("Ce qui porte votre force d'attack à: [ " + ((Game)(listGamer.get(idGame))).getHero().getAttackLevel() + " ]"); // on affiche la nouvelle force d'attak du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsEpeeCase (int des) {
+    public void IsEpeeCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.EPEES; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesEpee()){
@@ -134,13 +149,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return parameters.getAttack() ; // Renvoi les points d'attaque'.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                pow = pow + parameters.getAttack() ; // On ajoute les points d'attack obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(pow) ; // On modifie (set) l'attaque du joueur.
+                System.out.println("Ce qui porte votre force d'attack à: [ " + ((Game)(listGamer.get(idGame))).getHero().getAttackLevel() + " ]"); // on affiche la nouvelle force d'attak du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsSortECase (int des) {
+    public void IsSortECase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.SORTS_ECLAIR; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesSortE()){
@@ -148,13 +168,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return parameters.getAttack() ; // Renvoi les points d'attaque'.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                pow = pow + parameters.getAttack() ; // On ajoute les points d'attack obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(pow) ; // On modifie (set) l'attaque du joueur.
+                System.out.println("Ce qui porte votre force d'attack à: [ " + ((Game)(listGamer.get(idGame))).getHero().getAttackLevel() + " ]"); // on affiche la nouvelle force d'attak du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsSortFCase (int des) {
+    public void IsSortFCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.SORTS_FIRE; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesSortF()){
@@ -162,13 +187,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
-                return parameters.getAttack() ; // Renvoi les points d'attaque'.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                pow = pow + parameters.getAttack() ; // On ajoute les points d'attack obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(pow) ; // On modifie (set) l'attaque du joueur.
+                System.out.println("Ce qui porte votre force d'attack à: [ " + ((Game)(listGamer.get(idGame))).getHero().getAttackLevel() + " ]"); // on affiche la nouvelle force d'attak du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getAttack() ; // Renvoi les points d'attaque'.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsPostionLCase (int des) {
+    public void IsPostionLCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.POTION_LOW; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionMin()){
@@ -176,13 +206,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
-                return parameters.getLife() ; // Renvoi les points de vie.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getLife(); // on récupère la vie du joueur.
+                pow = pow + parameters.getLife() ; // On ajoute les points de vie obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+                System.out.println("Ce qui porte votre vie à: [ " + ((Game)(listGamer.get(idGame))).getHero().getLife() + " ]"); // on affiche la nouvelle vie du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsPostionNCase (int des) {
+    public void IsPostionNCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.POTION_NORM; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionNorm()){
@@ -190,13 +225,18 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
-                return parameters.getLife() ; // Renvoi les points de vie.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getLife(); // on récupère la vie du joueur.
+                pow = pow + parameters.getLife() ; // On ajoute les points de vie obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+                System.out.println("Ce qui porte votre vie à: [ " + ((Game)(listGamer.get(idGame))).getHero().getLife() + " ]"); // on affiche la nouvelle vie du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
 
-    public int IsPostionHCase (int des) {
+    public void IsPostionHCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.POTION_HIGH; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesPotionHigh()){
@@ -204,10 +244,15 @@ public class SpecialCases {
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie !"); // Détails.
-                return parameters.getLife() ; // Renvoi les points de vie.
+                int pow = ((Game)(listGamer.get(idGame))).getHero().getLife(); // on récupère la vie du joueur.
+                pow = pow + parameters.getLife() ; // On ajoute les points de vie obtenues.
+                ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+                System.out.println("Ce qui porte votre vie à: [ " + ((Game)(listGamer.get(idGame))).getHero().getLife() + " ]"); // on affiche la nouvelle vie du joueur.
+                //return listGamer ; // On renvoie la HashMap modifiée.
+                //return parameters.getLife() ; // Renvoi les points de vie.
             }
         }
-        return 0 ; // renvoi 0 !!!
+        //return listGamer ; // renvoi la HashMap non modifiée !!!
     }
     
 

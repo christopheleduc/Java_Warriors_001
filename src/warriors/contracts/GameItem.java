@@ -1,7 +1,7 @@
 package warriors.contracts;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 /**
  * Enum to describe possible game items and enemy

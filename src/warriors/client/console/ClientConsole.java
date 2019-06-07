@@ -1,9 +1,9 @@
 package warriors.client.console;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.util.ArrayList;
+//import java.util.List;
 import java.util.Scanner;
 
 import warriors.contracts.GameState;
@@ -30,7 +30,7 @@ public class ClientConsole {
 			}			
 		}while(!menuChoice.equals(MENU_QUITTER));
 		sc.close();
-		System.out.println("� bient�t");
+		System.out.println("à bientôt");
 	}
 
 	private static void startGame(WarriorsAPI warriors, Scanner sc) {
@@ -38,7 +38,7 @@ public class ClientConsole {
 		System.out.println("Entrez votre nom:");
 		String playerName = sc.nextLine();
 		
-		System.out.println("Choisissez votre h�ro:");
+		System.out.println("Choisissez votre héro:");
 		for(int i = 0; i < warriors.getHeroes().size(); i++) {
 			Hero heroe = warriors.getHeroes().get(i);
 			System.out.println(i+1 + " - " + heroe.getName());
@@ -58,7 +58,7 @@ public class ClientConsole {
 		String gameId = gameState.getGameId();
 		while (gameState.getGameStatus() == GameStatus.IN_PROGRESS) {
 			System.out.println(gameState.getLastLog());
-			System.out.println("\nAppuyer sur une touche pour lancer le d�"); 
+			System.out.println("\nAppuyer sur une touche pour lancer le dé"); 
 			if(sc.hasNext()) {
 				sc.nextLine();
 				gameState = warriors.nextTurn(gameId);

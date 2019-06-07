@@ -23,8 +23,8 @@ public class Warriors implements WarriorsAPI {
 	 * Attributs.
 	 */
     
-    private ArrayList<Hero> heroes = new ArrayList<Hero>();
-    private ArrayList<Map> maps = new ArrayList<Map>();
+    //private ArrayList<Hero> heroes = new ArrayList<Hero>();
+    //private ArrayList<Map> maps = new ArrayList<Map>();
     //private ArrayList<GameState> gameStatList = new ArrayList<GameState>();
     private HashMap<String, GameState> gameStatList = new HashMap<>();
     //private gameStatList = new gameStatList();
@@ -37,36 +37,38 @@ public class Warriors implements WarriorsAPI {
     
     public Warriors() {
         // Création d'une liste de heros
-        this.heroes.add(new Heros("Conan", "conan.png"));
-        this.heroes.add(new Heros("Gandalf", "gandalf.png"));
+        this.getHeroes() ;
+        //this.heroes.add(new Heros("Conan", "conan.png"));
+        //this.heroes.add(new Heros("Gandalf", "gandalf.png"));
         // Création d'une liste de map
-        this.maps.add(new Maps("Mordor", 64));
-        this.maps.add(new Maps("Terre du milieu", 64));
-        this.maps.add(new Maps("NeverLand", 64));
+        this.getMaps() ;
+        //this.maps.add(new Maps("Mordor", 64));
+        //this.maps.add(new Maps("Terre du milieu", 64));
+        //this.maps.add(new Maps("NeverLand", 64));
     }
 
     /**
 	 * Constructeurs avec paramètres.
 	 */
 
-    public Warriors(String name) {
-        this.heroes.add(new Heros(name, "conan.png"));
-        this.maps.add(new Maps("Mordor", 64));
-        this.maps.add(new Maps("Terre du milieu", 64));
-        this.maps.add(new Maps("NeverLand", 64));
-    }
+    // public Warriors(String name) {
+    //     //this.heroes.add(new Heros(name, "conan.png"));
+    //     //this.maps.add(new Maps("Mordor", 64));
+    //     this.maps.add(new Maps("Terre du milieu", 64));
+    //     this.maps.add(new Maps("NeverLand", 64));
+    // }
 
-    public Warriors(String name, String image, int life, int AttackLevel, String nameMap, int numberOfCase) {
-        this.heroes.add(new Heros(name, image, life, AttackLevel));
-        this.maps.add(new Maps(nameMap, numberOfCase));
-        //heroes.add(warrior) ;
-        //heroes.add(magician) ;
-        // this.setPlayerName(playerName) ;
-        // this.heroes.setImage(image) ;
-        // this.setHero(hero) ;
-        // this.setLife(r.nextInt(max - min + 1) + min) ;
-        // this.heroes.setAttackLevel(r.nextInt(max - min + 1) + min) ;
-    }
+    // public Warriors(String name, String image, int life, int AttackLevel, String nameMap, int numberOfCase) {
+    //     this.heroes.add(new Heros(name, image, life, AttackLevel));
+    //     this.maps.add(new Maps(nameMap, numberOfCase));
+    //     //heroes.add(warrior) ;
+    //     //heroes.add(magician) ;
+    //     // this.setPlayerName(playerName) ;
+    //     // this.heroes.setImage(image) ;
+    //     // this.setHero(hero) ;
+    //     // this.setLife(r.nextInt(max - min + 1) + min) ;
+    //     // this.heroes.setAttackLevel(r.nextInt(max - min + 1) + min) ;
+    // }
 
     /**
 	 * Méthodes bind from the WarriorsAPI interface.
@@ -74,6 +76,9 @@ public class Warriors implements WarriorsAPI {
     
     @Override
     public List<Hero> getHeroes() {
+        ArrayList<Hero> heroes = new ArrayList<Hero>();
+        heroes.add(new Heros("Conan", "conan.png"));
+        heroes.add(new Heros("Gandalf", "gandalf.png"));
         return heroes ;
     }
 
@@ -84,6 +89,10 @@ public class Warriors implements WarriorsAPI {
 
     @Override
     public List<Map> getMaps() {
+        ArrayList<Map> maps = new ArrayList<Map>();
+        maps.add(new Maps("Mordor", 64));
+        maps.add(new Maps("Terre du milieu", 64));
+        maps.add(new Maps("NeverLand", 64));
         return maps;
     }
 
@@ -96,6 +105,7 @@ public class Warriors implements WarriorsAPI {
 
         // Instanciation de la partie
         GameState tour = new Game(playerName, hero, map);
+        //HashMap<String, GameState> gameStatList = new HashMap<>();
 
         // Création du GameState
         //gameStatList.add(tour); // Ajout de l'intance de Game (interface GameState) dans la ArayList
@@ -147,14 +157,14 @@ public class Warriors implements WarriorsAPI {
         //int power = ((Game)(gameStatList.get(gameID))).getHero().getAttackLevel() ; // On recupere l'attaque du joueur.
 
         // + de 64 cases = Fin de partie.
-        if(des >= 64){
+        if(des >= 64){ // Si on est sur la case 64.
             System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
             ((Game)(gameStatList.get(gameID))).setCurrentCase(64) ; // Set current case FINAL.
             System.out.println("Vous etes maintenant sur la case: [ 64 ]") ; // Affiche la dernière case.
             System.out.println("-------------------------------------------") ; // Affiche la dernière case.
             ((Game)(gameStatList.get(gameID))).setLastLog("Bravo! Vous avez gagné!") ; // Affiche la dernière case.
             ((Game)(gameStatList.get(gameID))).setGameStatus(GameStatus.FINISHED) ; // Renvoi FIN.
-        } else {
+        } else if(des < 64 && ((Game)(gameStatList.get(gameID))).getHero().getLife() > 0) { // Si on est pas encore sur la case 64 et qu'on a de la vie.
             System.out.println("Votre score: [ " + de + " ]"); // Affiche le score.
             ((Game)(gameStatList.get(gameID))).setCurrentCase(des) ; // Set current case.
             ((Game)(gameStatList.get(gameID))).setLastLog("Vous etes maintenant sur la case: [ " + des + " ]") ; // Affiche la nouvelle case.
@@ -171,12 +181,12 @@ public class Warriors implements WarriorsAPI {
             // Les adversaires. //
             //******************//
             // Dragons          //
-            isSpecCase.IsDragonCase(des) ;
+            isSpecCase.IsDragonCase(des, gameStatList, gameID) ;
             // Sorciers         //
-            isSpecCase.IsSorcierCase(des) ;
+            isSpecCase.IsSorcierCase(des, gameStatList, gameID) ;
             // Gobelins         //
-            isSpecCase.IsGobelinCase(des) ;
-            
+            isSpecCase.IsGobelinCase(des, gameStatList, gameID) ;
+
             //******************//
             // Les bonus.       //
             //******************//

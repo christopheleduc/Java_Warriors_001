@@ -6,8 +6,8 @@ import warriors.contracts.Hero;
 public class Heros implements Hero {
 
     
-    private int min = 5;
-    private int max = 10;
+    private int min = 10;
+    private int max = 25;
     private Random r = new Random();
     private String name;
     private String image;

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import warriors.contracts.GameItem;
 import warriors.contracts.GameState;
+import warriors.contracts.GameStatus;
 
 public class SpecialCases extends Warriors{
 
@@ -65,7 +66,7 @@ public class SpecialCases extends Warriors{
     /**
 	 * Méthodes.
 	 */
-    public void IsDragonCase (int des) {
+    public void IsDragonCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.DRAGONS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesDrag()){
@@ -73,11 +74,42 @@ public class SpecialCases extends Warriors{
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+
+                //******************//
+                // COMBAT.          //
+                //******************//
+                //Attributs+Calculs //
+                int yourLife = ((Game)(listGamer.get(idGame))).getHero().getLife() ; // Recupère la vie du joueur.
+                int yourAttack = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                yourAttack = yourAttack - parameters.getAttack() ; // On soustrait les points d'attack de l'adversaire.
+                yourLife = yourLife - parameters.getLife() ; // On soustrait les points de vie de l'adversaire.
+                //((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+
+                //Points Attack     //
+                if(yourAttack >= 0) {   // Supérieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(yourAttack) ; // On modifie (set) l'attack du joueur.
+                    System.out.println("Il vous reste [ " + yourAttack + " ] d'attack !"); // Points d'attack restants.
+                } else {                // Inferieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(0) ; // On modifie (set) l'attack du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] d'attack !"); // Points d'attack restants.
+                }
+                //Points Vie        //
+                if(yourLife <= 0) {     // Inferieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(0) ; // On modifie (set) la vie du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous avez perdu !!!!!"); // Perdu.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.GAME_OVER) ; // Renvoi Game over.
+                } else {                // Superieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(yourLife) ; // On modifie (set) la vie du joueur.
+                    System.out.println("Il vous reste [ " + yourLife + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous gagnez le combat !!!!!"); // Vainceur.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.IN_PROGRESS) ; // Renvoi En cours.
+                }
             }
         }
     }
 
-    public void IsSorcierCase (int des) {
+    public void IsSorcierCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.SORCIERS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesSorc()){
@@ -85,11 +117,42 @@ public class SpecialCases extends Warriors{
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                
+                //******************//
+                // COMBAT.          //
+                //******************//
+                //Attributs+Calculs //
+                int yourLife = ((Game)(listGamer.get(idGame))).getHero().getLife() ; // Recupère la vie du joueur.
+                int yourAttack = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                yourAttack = yourAttack - parameters.getAttack() ; // On soustrait les points d'attack de l'adversaire.
+                yourLife = yourLife - parameters.getLife() ; // On soustrait les points de vie de l'adversaire.
+                //((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+
+                //Points Attack     //
+                if(yourAttack >= 0) {   // Supérieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(yourAttack) ; // On modifie (set) l'attack du joueur.
+                    System.out.println("Il vous reste [ " + yourAttack + " ] d'attack !"); // Points d'attack restants.
+                } else {                // Inferieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(0) ; // On modifie (set) l'attack du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] d'attack !"); // Points d'attack restants.
+                }
+                //Points Vie        //
+                if(yourLife <= 0) {     // Inferieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(0) ; // On modifie (set) la vie du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous avez perdu !!!!!"); // Perdu.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.GAME_OVER) ; // Renvoi Game over.
+                } else {                // Superieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(yourLife) ; // On modifie (set) la vie du joueur.
+                    System.out.println("Il vous reste [ " + yourLife + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous gagnez le combat !!!!!"); // Vainceur.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.IN_PROGRESS) ; // Renvoi En cours.
+                }
             }
         }
     }
 
-    public void IsGobelinCase (int des) {
+    public void IsGobelinCase (int des, HashMap<String, GameState> listGamer, String idGame) {
         GameItem parameters = GameItem.GOBELINS; // Utilise ENUM.
         // Teste si sur une case spécial.
         for (int position : parameters.getCasesGob()){
@@ -97,6 +160,37 @@ public class SpecialCases extends Warriors{
                 System.out.println("!!! ATTENTION !!!"); // Avertissement.
                 System.out.println("Vous etes en présence d'" + parameters.getNom() + " !"); // Description.
                 System.out.println("Avec [ " + parameters.getLife() + " ] de Vie, et [ " + parameters.getAttack() + " ] d'attack !"); // Détails.
+                                
+                //******************//
+                // COMBAT.          //
+                //******************//
+                //Attributs+Calculs //
+                int yourLife = ((Game)(listGamer.get(idGame))).getHero().getLife() ; // Recupère la vie du joueur.
+                int yourAttack = ((Game)(listGamer.get(idGame))).getHero().getAttackLevel(); // on récupère l'attak du joueur.
+                yourAttack = yourAttack - parameters.getAttack() ; // On soustrait les points d'attack de l'adversaire.
+                yourLife = yourLife - parameters.getLife() ; // On soustrait les points de vie de l'adversaire.
+                //((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(pow) ; // On modifie (set) la vie du joueur.
+
+                //Points Attack     //
+                if(yourAttack >= 0) {   // Supérieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(yourAttack) ; // On modifie (set) l'attack du joueur.
+                    System.out.println("Il vous reste [ " + yourAttack + " ] d'attack !"); // Points d'attack restants.
+                } else {                // Inferieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setAttackLevel(0) ; // On modifie (set) l'attack du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] d'attack !"); // Points d'attack restants.
+                }
+                //Points Vie        //
+                if(yourLife <= 0) {     // Inferieur ou égal à zero.
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(0) ; // On modifie (set) la vie du joueur à zero.
+                    System.out.println("Il vous reste [ " + 0 + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous avez perdu !!!!!"); // Perdu.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.GAME_OVER) ; // Renvoi Game over.
+                } else {                // Superieur à zero
+                    ((Heros) ((Game)(listGamer.get(idGame))).getHero()).setLife(yourLife) ; // On modifie (set) la vie du joueur.
+                    System.out.println("Il vous reste [ " + yourLife + " ] de vie !"); // Points de vie restants.
+                    System.out.println("Vous gagnez le combat !!!!!"); // Vainceur.
+                    ((Game)(listGamer.get(idGame))).setGameStatus(GameStatus.IN_PROGRESS) ; // Renvoi En cours.
+                }
             }
         }
     }
